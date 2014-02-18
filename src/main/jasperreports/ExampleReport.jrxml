@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ExampleReport" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1a36cc8f-12d7-4f46-a58b-eac08b8039cd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="timeGraph" uuid="73471b94-85d8-4cbc-ac47-b446756c654c">
+		<field name="time" class="java.lang.String"/>
+		<field name="value" class="java.lang.Long"/>
+	</subDataset>
+	<subDataset name="pagesGraph" uuid="9c0e8080-524f-4c51-bba2-d92302f0341d">
+		<field name="page" class="java.lang.String"/>
+		<field name="value" class="java.lang.Long"/>
+	</subDataset>
+	<parameter name="title" class="java.lang.String"/>
+	<parameter name="timeGraphDataSource" class="java.lang.Object"/>
+	<parameter name="pagesGraphDataSource" class="java.lang.Object"/>
+	<field name="time" class="java.lang.String"/>
+	<field name="value" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="243" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="79" uuid="bb994385-85a5-4f53-adcf-009221cfae5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="24" pdfEncoding="Cp1250"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<barChart>
+				<chart isShowLegend="false">
+					<reportElement x="0" y="79" width="555" height="164" uuid="f123f95f-e6bb-4f95-9945-9b3e58a9aa88"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Top"/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="timeGraph" uuid="d897c018-5577-4211-b180-6791a1369020">
+							<datasetParameter name="REPORT_DATA_SOURCE">
+								<datasetParameterExpression><![CDATA[$P{timeGraphDataSource}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[""]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{time}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{value}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot labelRotation="60.0"/>
+					<itemLabel/>
+					<categoryAxisFormat labelRotation="60.0">
+						<axisFormat verticalTickLabels="true"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat verticalTickLabels="false"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="21" width="100" height="20" uuid="1490381b-4cd9-4864-a3df-b2f9c5cfc15a"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Den]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="168" y="21" width="100" height="20" uuid="6609ea32-f490-4b66-8138-ab5b560f04ab"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true" pdfEncoding="Cp1250"/>
+				</textElement>
+				<text><![CDATA[Počet náštěv]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="7" width="100" height="20" uuid="518c3631-873c-43a2-af5f-280baf73e6a8"/>
+				<textElement>
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="7" width="100" height="20" uuid="2bd866e1-940b-4fea-99a8-e49a33d1aa35"/>
+				<textElement>
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="239" splitType="Stretch">
+			<barChart>
+				<chart isShowLegend="false">
+					<reportElement x="0" y="34" width="555" height="205" uuid="cd9d76d7-29bc-400b-8874-23920f9686a7"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend position="Top"/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="pagesGraph" uuid="7f9ecfe5-bade-42d9-8c1c-ced0c0c7a838">
+							<datasetParameter name="REPORT_DATA_SOURCE">
+								<datasetParameterExpression><![CDATA[$P{pagesGraphDataSource}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[""]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{page}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{value}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot orientation="Horizontal" labelRotation="0.0">
+						<seriesColor seriesOrder="0" color="#0066FF"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat labelRotation="0.0">
+						<axisFormat verticalTickLabels="true"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat verticalTickLabels="false"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -55,14 +55,6 @@
                             </goals>
                         </execution>
                     </executions>
-                    <dependencies>
-                        <dependency>
-                            <groupId>net.sf.jasperreports</groupId>
-                            <artifactId>jasperreports</artifactId>
-                            <version>5.1.2</version>
-                            <scope>${library.scope}</scope>
-                        </dependency>
-                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>

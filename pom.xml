@@ -44,6 +44,7 @@
     <build>
         <pluginManagement>
             <plugins>
+                <!-- jasperreports templates -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>jasperreports-maven-plugin</artifactId>

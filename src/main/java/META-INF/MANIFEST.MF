@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: me.kolinger.pro3.jaspersreports.Application
-

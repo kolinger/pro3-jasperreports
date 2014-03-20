@@ -37,13 +37,12 @@ public class Report {
     }
 
     public void doExport() throws JRException {
-        JasperPrint jasperPrint = fillReport();
         if (format == FORMAT_PDF) {
-            exportToPdf(jasperPrint);
+            exportToPdf();
         } else if (format == FORMAT_HTML) {
-            exportToHtml(jasperPrint);
+            exportToHtml();
         } else if (format == FORMAT_XLS) {
-            exportToExcel(jasperPrint);
+            exportToExcel();
         } else {
             throw new IllegalArgumentException("Unsupported format");
         }
@@ -117,17 +116,23 @@ public class Report {
         return JasperFillManager.fillReport(template, parameters, dataSource);
     }
 
-    private void exportToPdf(JasperPrint jasperPrint) throws JRException {
+    private void exportToPdf() throws JRException {
+        JasperPrint jasperPrint = fillReport();
+
         JasperExportManager.exportReportToPdfFile(jasperPrint, file.getAbsolutePath());
     }
 
-    private void exportToHtml(JasperPrint jasperPrint) throws JRException {
+    private void exportToHtml() throws JRException {
+        JasperPrint jasperPrint = fillReport();
+
         JasperExportManager.exportReportToHtmlFile(jasperPrint, file.getAbsolutePath());
     }
 
-    private void exportToExcel(JasperPrint jasperPrint) throws JRException {
+    private void exportToExcel() throws JRException {
+        JasperPrint jasperPrint = fillReport();
+
         JRXlsExporter exporter = new JRXlsExporter();
-        exporter.setParameter(JRExporterParameter.JASPER_PRINT, fillReport());
+        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
         exporter.setParameter(JRExporterParameter.OUTPUT_FILE, file);
         exporter.exportReport();
     }
